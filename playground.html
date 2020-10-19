@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>учусь</title>
+    <title>study</title>
 </head>
 <body>
 
@@ -10,21 +10,87 @@
 
     'use strict';
 
-    function makeWorker() {
-        let name = "Pete";
-
-        return function() {
-            alert(name);
-        };
+    // Задача1. Сумма с помощью замыканий
+    function sum (a) {
+        return function (b) {
+            return a + b
+        }
     }
 
-    let name = "John";
+    alert(sum(5)(6))
+    alert(sum(101)(10))
 
-    // create a function
-    let work = makeWorker();
 
-    // call it
-    work()
+    // Задача 2. Фильтрация с помощью функций
+    let arr = [1, 2, 3, 4, 5, 6, 7]
+
+    /**
+     * Функция возвращает true, если в нее передано значения между a b
+     * @param a - Number -
+     * @param b - Number -
+     * @returns {function(*): boolean}
+     */
+    function inBetween (a, b) {
+        return function (x) {
+            return x >= a && x<=b
+        }
+    }
+
+    alert(arr.filter(inBetween(2,6)));
+
+    /**
+     * Функция возвращает true, если y входит в массив arr
+     * @param arr
+     * @returns {function(*=): boolean}
+     */
+    function inArray(arr) {
+        return function (y) {
+            return arr.includes(y)
+        }
+    }
+
+    alert(arr.filter(inArray ([3, 5, 10])));
+
+
+    // Задача 3. Сортировка по полю
+    let users = [
+        { name: "John", age: 20, surname: "Johnson" },
+        { name: "Pete", age: 18, surname: "Peterson" },
+        { name: "Ann", age: 19, surname: "Hathaway" }
+    ];
+
+    //Данная функция делает сортировку массива более компактной и подходящей к различным условиям сортировки
+    function byField (field) {
+        return (a, b) => a[field] > b[field] ? 1 : -1;
+    }
+    users.sort(byField('name'));
+    users.forEach(user => alert(user.name));
+
+    users.sort(byField ('age'));
+    users.forEach(user => alert (user.age));
+
+    // Задача 4. Функция по созданию армии
+    function makeArmy() {
+        let shooters = [];
+
+        /** по условию задачи был представлен неработающий код с циклом while и внешним объявлением функции i, что
+        возвращало в alert (i) результат последней итерации, из-за чего вызов army[n]() всегда возвращал 10, изменение
+        цикла помогло решить данную проблему, теперь переменная i берется из внутреннего лексического окружения цикла
+        */
+        for (let i = 0; i < 10; i++) {
+            let shooter = function() {
+                alert( i );
+            };
+            shooters.push(shooter);
+        }
+        return shooters;
+    }
+    let army = makeArmy();
+
+    army[0]();
+    army[5]();
+
+
 
 </script>
 </body>
