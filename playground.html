@@ -1,97 +1,101 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="ru-RU">
 <head>
     <meta charset="UTF-8">
-    <title>study</title>
+    <title>Страница обо мне</title>
 </head>
-<body>
+<body style="background-color: #d7d7f6">
+    <header>
+        <h1>Сайт, повествующий о Викуле4ке-красотуле4ке</h1>
+        <address>
+            <div>Адрес: Санкт-Петербург, ул.Кременчугская, 17к2, кв.137</div>
+            <div>Телефон: 8-977-339-83-61</div>
+        </address>
+    </header>
+    <main>
+    <div>
+        <h2>Мои контакты</h2>
+        <div>
+            <h3>Я в соц. сетях</h3>
+            <ul>
+                <li><a href="https://vk.com/viktoriyapm">Я в ВК</a></li>
+                <li><a href="https://www.facebook.com/profile.php?id=100008219280294" target="_blank">Я в Fb</a></li>
+                <li><a href="https://www.instagram.com/viktoriyapm/">Я в Ig</a></li>
+            </ul>
+        </div>
+    </div>
+    <hr color="#da70d6" >
+    <div>
+        <h2>Обо мне:</h2>
+        <div>
+            <img style="width: 400px; height: 400px;" src="./img/IMG_3025.jpeg" alt="На фотографии изображена я в черной кожанной куртке и очках, тянущаяся руками в кадр">
+            <p>Это первый сайт Викуле4ки-красотулечки, в котором она пытается пользоваться всеми чудесами html, после загрузки страницы мы узнаем что из этого вышло</p>
+        </div>
 
-<script>
+    </div>
+    <hr color="#da70d6" >
+    <div>
+        <h2>Анкетка для моих друзей</h2>
+        <form action="" method="post">
+            <div>
+                <label> Имя дружочка
+                    <input type="text" name="name" placeholder="Введи имя">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Почта дружочка
+                <input type="text" name="name" placeholder="Введи e-mail">
+                </label>
+            </div>
+            <div>
+                <label>
+                    Пол дружочка
+                <input type="radio" name="gender" value="male"> Мужской
+                <input type="radio" name="gender" value="female"> Женский
+                </label>
+            </div>
+                <div>
+                    <label>
+                        <span>Где познакомились?</span>
+                        <input type="checkbox" name="extra" value="В школе">
+                        В школе
+                        <input type="checkbox" name="extra" value="В университете" checked>
+                        В университете
+                        <input type="checkbox" name="extra" value="На работе">
+                        На работе
+                        <input type="checkbox" name="extra" value="Через друзей/знакомых">
+                        Через друзей/знакомых
+                    </label>
+                </div>
+            <div>
+                <label>
+                    <span>
+                        Почему ты проходишь эту анкету?</span>
+                    <select name="type">
+                        <option value="Меня заставили">Меня заставили</option>
+                        <option value="Люблю тупые анкеты">Люблю тупые анкеты</option>
+                    </select>
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>У друзей должны быть совместные фотографии: приложи фотографию со мной</span>
+                    <input type="file" name="_file">
+                </label>
+            </div>
+            <div>
+                <label>
+                    <span>Твои впечатления от анкеты</span>
+                    <textarea name="comment" cols="30" rows="10" maxlength="100"></textarea>
+                </label>
+            </div>
+            <div>
+                <input type="reset" value="Сброс">
+                <button name="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
 
-    'use strict';
-
-    // Задача1. Сумма с помощью замыканий
-    function sum (a) {
-        return function (b) {
-            return a + b
-        }
-    }
-
-    alert(sum(5)(6))
-    alert(sum(101)(10))
-
-
-    // Задача 2. Фильтрация с помощью функций
-    let arr = [1, 2, 3, 4, 5, 6, 7]
-
-    /**
-     * Функция возвращает true, если в нее передано значения между a b
-     * @param a - Number -
-     * @param b - Number -
-     * @returns {function(*): boolean}
-     */
-    function inBetween (a, b) {
-        return function (x) {
-            return x >= a && x<=b
-        }
-    }
-
-    alert(arr.filter(inBetween(2,6)));
-
-    /**
-     * Функция возвращает true, если y входит в массив arr
-     * @param arr
-     * @returns {function(*=): boolean}
-     */
-    function inArray(arr) {
-        return function (y) {
-            return arr.includes(y)
-        }
-    }
-
-    alert(arr.filter(inArray ([3, 5, 10])));
-
-
-    // Задача 3. Сортировка по полю
-    let users = [
-        { name: "John", age: 20, surname: "Johnson" },
-        { name: "Pete", age: 18, surname: "Peterson" },
-        { name: "Ann", age: 19, surname: "Hathaway" }
-    ];
-
-    //Данная функция делает сортировку массива более компактной и подходящей к различным условиям сортировки
-    function byField (field) {
-        return (a, b) => a[field] > b[field] ? 1 : -1;
-    }
-    users.sort(byField('name'));
-    users.forEach(user => alert(user.name));
-
-    users.sort(byField ('age'));
-    users.forEach(user => alert (user.age));
-
-    // Задача 4. Функция по созданию армии
-    function makeArmy() {
-        let shooters = [];
-
-        /** по условию задачи был представлен неработающий код с циклом while и внешним объявлением функции i, что
-        возвращало в alert (i) результат последней итерации, из-за чего вызов army[n]() всегда возвращал 10, изменение
-        цикла помогло решить данную проблему, теперь переменная i берется из внутреннего лексического окружения цикла
-        */
-        for (let i = 0; i < 10; i++) {
-            let shooter = function() {
-                alert( i );
-            };
-            shooters.push(shooter);
-        }
-        return shooters;
-    }
-    let army = makeArmy();
-
-    army[0]();
-    army[5]();
-
-
-
-</script>
 </body>
 </html>
