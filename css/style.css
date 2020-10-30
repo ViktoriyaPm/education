@@ -70,5 +70,34 @@ html, body {
     background-color: #ececec;
     text-align: center;
     padding: 0 30px;
-    margin: 50px;
+    margin-right: 50px;
+}
+
+@media (max-width: 800px) {
+    html, body {
+        height: auto;
+    }
+    .container{
+        flex-direction: column;
+    }
+    .left-col {
+        width: 100%;
+    }
+    .right-col {
+        width: 100%;
+    }
+    .footer {
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-wrap: nowrap;
+        padding: 20px;
+    }
+    .section {
+        height: 50px;
+        width: 100%;
+        margin-top: 20px;
+        margin-right: 0;
+    }
 }
